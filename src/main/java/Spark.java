@@ -18,24 +18,23 @@ public class Spark {
         System.out.println("What can I fetch for you today, Bark?");
     }
 
-    // Level-1 & Level-2 & Level-3
+    // Level-1 & Level-2 & Level-3 & Level-4
     // Echo
     // Add, List
     // Mark as Done
+    // ToDos, Events, Deadlines
     public static boolean echo(ArrayList<Task> theList) {
         Scanner sc = new Scanner(System.in);
         String text = sc.nextLine();
 
         if (text.equals("bye")) {
             return false;
-
         } else if (text.equals("list")) {
             System.out.println("----------------");
-            for (int i = 0; i < theList.size(); i++) {
-                System.out.println(theList.get(i).getTaskId() + ".[" + theList.get(i).getStatusIcon() + "] " + theList.get(i).getTask());
+            for (Task task : theList) {
+                System.out.println(task.getTaskInfo());
             }
             System.out.println("----------------");
-
 
         } else if (Pattern.matches("^mark [0-9]+$", text)) { // Regex to check specifically for input
             // Extract number - using regex
@@ -45,8 +44,10 @@ public class Spark {
                 System.out.println("Grrr, item does not exist! Try another Id Bark!");
             } else {
                 theList.get(target).markAsDone();
+                System.out.println("----------------");
                 System.out.println("Marked as done! Awoo!");
-                System.out.println(theList.get(target).getTaskId() + ".[" + theList.get(target).getStatusIcon() + "] " + theList.get(target).getTask());
+                System.out.println(theList.get(target).getTaskInfo());
+                System.out.println("----------------");
             }
 
         } else if (Pattern.matches("^unmark [0-9]+$", text)) { // Regex to check specifically for input
@@ -58,8 +59,63 @@ public class Spark {
             } else {
                 theList.get(target).markAsNew();
                 System.out.println("Marked as new! Awoo!");
-                System.out.println(theList.get(target).getTaskId() + ".[" + theList.get(target).getStatusIcon() + "] " + theList.get(target).getTask());
+                System.out.println(theList.get(target).getTaskInfo());
             }
+
+        } else if (Pattern.matches("^deadline .+ /by .+$", text)) { // Checks for specific
+            // Deadline Task
+            // Extract Task
+            String taskDescription = text.substring(text.indexOf("deadline ") + 9, text.indexOf("/by"));
+            // Extract Date
+            String deadline = text.substring(text.indexOf("/by ") + 4);
+            // Add to list
+            DeadlineTask item = new DeadlineTask(taskDescription, deadline);
+            theList.add(item);
+            // Response
+            System.out.println("----------------");
+            System.out.println("Bark! I've added the task!");
+            System.out.println(item.getTaskInfo());
+            System.out.println("You now have " + theList.size() + " tasks in list!");
+            System.out.println("----------------");
+
+        } else if (Pattern.matches("^todo .+$", text)) {
+            // ToDo Task
+            // Extract Task
+            String taskDescription = text.substring(text.indexOf("todo ") + 5);
+
+            // Add to list
+            Task item = new Task(taskDescription);
+            theList.add(item);
+
+            // Response
+            System.out.println("----------------");
+            System.out.println("Bark! I've added the task!");
+            System.out.println(item.getTaskInfo());
+            System.out.println("You now have " + theList.size() + " tasks in list!");
+            System.out.println("----------------");
+
+        } else if (Pattern.matches("^event .+ /from .+ /to .+$", text)) { // Checks for specific
+
+            // Event Task
+            // Extract Task
+            String taskDescription = text.substring(text.indexOf("event ") + 6, text.indexOf(" /from"));
+            // Extract StartDate
+            String startDate = text.substring(text.indexOf("/from ") + 6, text.indexOf(" /to"));
+            // Extract StartTime
+            // String startTime = text.substring(text.indexOf(" ") + 1, text.indexOf(" /to"));
+            // Extract EndDate
+            String endDate = text.substring(text.indexOf("/to ") + 4);
+
+            // Add to list
+            EventTask item = new EventTask(taskDescription, startDate, endDate);
+            theList.add(item);
+
+            // Response
+            System.out.println("----------------");
+            System.out.println("Bark! I've added the task!");
+            System.out.println(item.getTaskInfo());
+            System.out.println("You now have " + theList.size() + " tasks in list!");
+            System.out.println("----------------");
 
         } else { // Add item
             System.out.println("----------------");
@@ -67,8 +123,8 @@ public class Spark {
             theList.add(new Task(text));
             System.out.println("----------------");
         }
-        return true;
 
+        return true;
     }
 
     public static void main(String[] args) {
@@ -79,8 +135,8 @@ public class Spark {
         while (echo(theList)) {
             // While echo is true
         }
+        // Say Goodbye
         System.out.println("----------------");
         System.out.println("See you soon! Bark!\n");
-
     }
 }
