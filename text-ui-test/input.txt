@@ -17,3 +17,10 @@ unmark 3
 unmark 2
 unmark 1
 list
+todo
+event
+deadline
+event eat banana
+todo cook banana
+deadline fry banana
+1234321

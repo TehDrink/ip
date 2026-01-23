@@ -25,7 +25,7 @@ public class Spark {
     // Add, List
     // Mark as Done
     // ToDos, Events, Deadlines
-    public static boolean echo(Scanner sc, ArrayList<Task> theList) {
+    public static boolean echo(Scanner sc, ArrayList<Task> theList) throws SparkException {
         // Guard
         if (!sc.hasNextLine()) {
             return false;
@@ -47,7 +47,7 @@ public class Spark {
             text = text.replaceAll("[^0-9]", "");
             int target = Integer.parseInt(text) - 1;
             if (target >= theList.size()) {
-                System.out.println("Grrr, item does not exist! Try another Id Bark!");
+                throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
             } else {
                 theList.get(target).markAsDone();
                 System.out.println("----------------");
@@ -62,8 +62,7 @@ public class Spark {
             int target = Integer.parseInt(text) - 1;
             System.out.println("----------------");
             if (target >= theList.size()) {
-                System.out.println("Grrr, item does not exist! Try another Id Bark!");
-
+                throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
             } else {
                 theList.get(target).markAsNew();
                 System.out.println("Marked as new! Awoo!");
@@ -128,27 +127,38 @@ public class Spark {
             System.out.println("You now have " + theList.size() + " tasks in list!");
             System.out.println("----------------");
 
-        } else { // Add item
-            System.out.println("----------------");
-            System.out.println("Added: " + text);
-            theList.add(new Task(text));
-            System.out.println("----------------");
+        } else { // Handle Invalid
+            if (text.contains("todo")) {
+                throw new SparkException("Bark? todo (fill)?");
+            } else if (text.contains("deadline")) {
+                throw new SparkException("Bark? deadline (fill) /by (fill)?");
+            } else if (text.contains("event")) {
+                throw new SparkException("Bark? event (fill) /from (fill) /to (fill)?");
+            }
+            throw new SparkException("Bark? I didn't quite get that! Fetch me a proper command!");
         }
 
         return true;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SparkException {
+
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> theList = new ArrayList<>();
         // Greet the user
         greet();
         // Initiate Echo
-        while (echo(sc, theList)) {
-            // While echo is true
+        boolean isRunning = true;
+        while (isRunning) {
+            try {
+                isRunning = echo(sc, theList);
+            } catch (SparkException e) {
+                System.out.println("Error Sniffed! " + e.getMessage());
+            }
         }
         // Say Goodbye
         System.out.println("----------------");
         System.out.println("See you soon! Bark!\n");
+
     }
 }
