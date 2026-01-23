@@ -6,16 +6,18 @@ public class Spark {
     // Level-0
     // Rename, Greet, Exit
     public static void greet() {
-        String logo = " ____                   _    \n" +
+        String logo = " ____                   _\n" +
                 "/ ___| _ __   __ _ _ __| | __\n" +
                 "\\___ \\| '_ \\ / _` | '__| |/ /\n" +
                 " ___) | |_) | (_| | |  |   <\n" +
-                "|____/| .__/ \\__,_|_|  |_|\\_\\ \n" +
+                "|____/| .__/ \\__,_|_|  |_|\\_\\\n" +
                 "      |_|";
         System.out.println(logo);
         System.out.println("----------------");
         System.out.println("Bark! Hello I am Spark! I am dog!");
         System.out.println("What can I fetch for you today, Bark?");
+        System.out.println("----------------");
+
     }
 
     // Level-1 & Level-2 & Level-3 & Level-4
@@ -23,8 +25,12 @@ public class Spark {
     // Add, List
     // Mark as Done
     // ToDos, Events, Deadlines
-    public static boolean echo(ArrayList<Task> theList) {
-        Scanner sc = new Scanner(System.in);
+    public static boolean echo(Scanner sc, ArrayList<Task> theList) {
+        // Guard
+        if (!sc.hasNextLine()) {
+            return false;
+        }
+
         String text = sc.nextLine();
 
         if (text.equals("bye")) {
@@ -54,13 +60,18 @@ public class Spark {
             // Extract number - using regex
             text = text.replaceAll("[^0-9]", "");
             int target = Integer.parseInt(text) - 1;
+            System.out.println("----------------");
             if (target >= theList.size()) {
                 System.out.println("Grrr, item does not exist! Try another Id Bark!");
+
             } else {
                 theList.get(target).markAsNew();
                 System.out.println("Marked as new! Awoo!");
                 System.out.println(theList.get(target).getTaskInfo());
+
             }
+            System.out.println("----------------");
+
 
         } else if (Pattern.matches("^deadline .+ /by .+$", text)) { // Checks for specific
             // Deadline Task
@@ -128,11 +139,12 @@ public class Spark {
     }
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         ArrayList<Task> theList = new ArrayList<>();
         // Greet the user
         greet();
         // Initiate Echo
-        while (echo(theList)) {
+        while (echo(sc, theList)) {
             // While echo is true
         }
         // Say Goodbye
