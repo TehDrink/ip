@@ -16,7 +16,7 @@ public class Task {
     }
 
     public String getTaskInfo() {
-        return this.getTaskId() + ". [" + this.getType() + "][" + this.getStatusIcon() + "] " + description;
+        return "[" + this.getType() + "][" + this.getStatusIcon() + "] " + description;
     }
 
     public int getTaskId() {

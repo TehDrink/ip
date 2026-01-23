@@ -20,6 +20,6 @@ public class EventTask extends DeadlineTask {
 
     @Override
     public String getTaskInfo(){
-        return this.getTaskId() + ". [" + this.getType() +"][" + this.getStatusIcon() + "] " + description + " (from: "+ this.getStartDate() +" to: " + this.getDeadline() +")";
+        return "[" + this.getType() +"][" + this.getStatusIcon() + "] " + description + " (from: "+ this.getStartDate() +" to: " + this.getDeadline() +")";
     }
 }

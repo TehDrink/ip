@@ -37,8 +37,8 @@ public class Spark {
             return false;
         } else if (text.equals("list")) {
             System.out.println("----------------");
-            for (Task task : theList) {
-                System.out.println(task.getTaskInfo());
+            for (int i = 0; i < theList.size(); i++) {
+                System.out.println(i+1 + ". " + theList.get(i).getTaskInfo());
             }
             System.out.println("----------------");
 
@@ -46,7 +46,7 @@ public class Spark {
             // Extract number - using regex
             text = text.replaceAll("[^0-9]", "");
             int target = Integer.parseInt(text) - 1;
-            if (target >= theList.size()) {
+            if (target >= theList.size() || target < 0) {
                 throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
             } else {
                 theList.get(target).markAsDone();
@@ -61,7 +61,7 @@ public class Spark {
             text = text.replaceAll("[^0-9]", "");
             int target = Integer.parseInt(text) - 1;
             System.out.println("----------------");
-            if (target >= theList.size()) {
+            if (target >= theList.size() || target < 0) {
                 throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
             } else {
                 theList.get(target).markAsNew();
@@ -127,7 +127,25 @@ public class Spark {
             System.out.println("You now have " + theList.size() + " tasks in list!");
             System.out.println("----------------");
 
-        } else { // Handle Invalid
+        } else if (Pattern.matches("^delete [0-9]+$", text)) { // Regex to check specifically for input
+            // Extract number - using regex
+            text = text.replaceAll("[^0-9]", "");
+            int target = Integer.parseInt(text) - 1;
+            System.out.println("----------------");
+            if (target >= theList.size() || target < 0) {
+                throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
+            } else {
+                System.out.println("Task removed! Removed the following Task Woof!");
+                System.out.println(theList.get(target).getTaskInfo());
+                theList.remove(target);
+                System.out.println("You now have " + theList.size() + " tasks in list!");
+
+            }
+            System.out.println("----------------");
+
+        }
+
+        else { // Handle Invalid
             if (text.contains("todo")) {
                 throw new SparkException("Bark? todo (fill)?");
             } else if (text.contains("deadline")) {

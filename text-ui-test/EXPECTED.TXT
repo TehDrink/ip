@@ -10,7 +10,7 @@ What can I fetch for you today, Bark?
 ----------------
 ----------------
 Bark! I've added the task!
-1. [T][ ] borrow book
+[T][ ] borrow book
 You now have 1 tasks in list!
 ----------------
 ----------------
@@ -18,12 +18,12 @@ You now have 1 tasks in list!
 ----------------
 ----------------
 Bark! I've added the task!
-2. [D][ ] return book (by: Sunday)
+[D][ ] return book (by: Sunday)
 You now have 2 tasks in list!
 ----------------
 ----------------
 Bark! I've added the task!
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
 You now have 3 tasks in list!
 ----------------
 ----------------
@@ -33,15 +33,15 @@ You now have 3 tasks in list!
 ----------------
 ----------------
 Marked as done! Awoo!
-1. [T][X] borrow book
+[T][X] borrow book
 ----------------
 ----------------
 Marked as done! Awoo!
-2. [D][X] return book (by: Sunday)
+[D][X] return book (by: Sunday)
 ----------------
 ----------------
 Marked as done! Awoo!
-3. [E][X] project meeting (from: Mon 2pm to: 4pm)
+[E][X] project meeting (from: Mon 2pm to: 4pm)
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
@@ -59,15 +59,15 @@ Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
 Marked as new! Awoo!
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
 ----------------
 ----------------
 Marked as new! Awoo!
-2. [D][ ] return book (by: Sunday)
+[D][ ] return book (by: Sunday)
 ----------------
 ----------------
 Marked as new! Awoo!
-1. [T][ ] borrow book
+[T][ ] borrow book
 ----------------
 ----------------
 1. [T][ ] borrow book
@@ -80,10 +80,45 @@ Error Sniffed! Bark? deadline (fill) /by (fill)?
 Error Sniffed! Bark? event (fill) /from (fill) /to (fill)?
 ----------------
 Bark! I've added the task!
-4. [T][ ] cook banana
+[T][ ] cook banana
 You now have 4 tasks in list!
 ----------------
 Error Sniffed! Bark? deadline (fill) /by (fill)?
+Error Sniffed! Bark? I didn't quite get that! Fetch me a proper command!
+----------------
+Error Sniffed! Grrr, item does not exist! Try another Id Bark!
+----------------
+Error Sniffed! Grrr, item does not exist! Try another Id Bark!
+----------------
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+4. [T][ ] cook banana
+----------------
+----------------
+Task removed! Removed the following Task Woof!
+[T][ ] cook banana
+You now have 3 tasks in list!
+----------------
+----------------
+Task removed! Removed the following Task Woof!
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
+You now have 2 tasks in list!
+----------------
+----------------
+Task removed! Removed the following Task Woof!
+[D][ ] return book (by: Sunday)
+You now have 1 tasks in list!
+----------------
+----------------
+Task removed! Removed the following Task Woof!
+[T][ ] borrow book
+You now have 0 tasks in list!
+----------------
+----------------
+----------------
+----------------
+Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 Error Sniffed! Bark? I didn't quite get that! Fetch me a proper command!
 ----------------
 See you soon! Bark!
