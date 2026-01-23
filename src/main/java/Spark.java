@@ -1,7 +1,17 @@
+import java.util.ArrayList;
 import java.util.Scanner;  // Import the Scanner class
 
-public class Spark {
 
+// Level-2
+// Add, List
+class ListItem {
+    String itemDescription; // Item Description
+    ListItem(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+}
+
+public class Spark {
     // Level-0
     // Rename, Greet, Exit
     public static void greet() {
@@ -17,28 +27,40 @@ public class Spark {
         System.out.println("What can I fetch for you today, Bark?");
     }
 
-    // Level-1
+    // Level-1 & Level-2
     // Echo
-    public static boolean echo() {
+    // Add, List
+    public static boolean echo(ArrayList<ListItem> theList) {
         Scanner sc = new Scanner(System.in);
         String text = sc.nextLine();
 
         if (text.equals("bye")) {
             return false;
-        } else {
+
+        } else if (text.equals("list")) {
             System.out.println("----------------");
-            System.out.println(text);
+            for (int i = 0; i < theList.size(); i++) {
+                System.out.println(i+1 + ". " + theList.get(i).itemDescription);
+            }
             System.out.println("----------------");
 
-            return true;
+        } else { // Add item
+            System.out.println("----------------");
+            System.out.println("Added: " + text);
+            theList.add(new ListItem(text));
+            System.out.println("----------------");
+
         }
+        return true;
+
     }
 
     public static void main(String[] args) {
+        ArrayList<ListItem> theList = new ArrayList<>();
         // Greet the user
         greet();
         // Initiate Echo
-        while (echo()) {
+        while (echo(theList)) {
             // While echo is true
         }
         System.out.println("----------------");
