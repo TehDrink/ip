@@ -1,7 +1,82 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+ ____                   _
+/ ___| _ __   __ _ _ __| | __
+\___ \| '_ \ / _` | '__| |/ /
+ ___) | |_) | (_| | |  |   <
+|____/| .__/ \__,_|_|  |_|\_\
+      |_|
+----------------
+Bark! Hello I am Spark! I am dog!
+What can I fetch for you today, Bark?
+----------------
+----------------
+Bark! I've added the task!
+1. [T][ ] borrow book
+You now have 1 tasks in list!
+----------------
+----------------
+1. [T][ ] borrow book
+----------------
+----------------
+Bark! I've added the task!
+2. [D][ ] return book (by: Sunday)
+You now have 2 tasks in list!
+----------------
+----------------
+Bark! I've added the task!
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+You now have 3 tasks in list!
+----------------
+----------------
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+----------------
+----------------
+Marked as done! Awoo!
+1. [T][X] borrow book
+----------------
+----------------
+Marked as done! Awoo!
+2. [D][X] return book (by: Sunday)
+----------------
+----------------
+Marked as done! Awoo!
+3. [E][X] project meeting (from: Mon 2pm to: 4pm)
+----------------
+Grrr, item does not exist! Try another Id Bark!
+Grrr, item does not exist! Try another Id Bark!
+Grrr, item does not exist! Try another Id Bark!
+----------------
+1. [T][X] borrow book
+2. [D][X] return book (by: Sunday)
+3. [E][X] project meeting (from: Mon 2pm to: 4pm)
+----------------
+----------------
+Grrr, item does not exist! Try another Id Bark!
+----------------
+----------------
+Grrr, item does not exist! Try another Id Bark!
+----------------
+----------------
+Grrr, item does not exist! Try another Id Bark!
+----------------
+----------------
+Marked as new! Awoo!
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+----------------
+----------------
+Marked as new! Awoo!
+2. [D][ ] return book (by: Sunday)
+----------------
+----------------
+Marked as new! Awoo!
+1. [T][ ] borrow book
+----------------
+----------------
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+----------------
+----------------
+See you soon! Bark!
 
