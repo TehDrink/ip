@@ -5,6 +5,7 @@ import java.util.Scanner;  // Import the Scanner class
 import java.util.regex.Pattern;
 import java.io.File; // Necessary for locating the file
 import java.io.FileNotFoundException; // Necessary for error handling
+import java.time.format.DateTimeParseException;
 
 public class Spark {
     // Level-0
@@ -43,7 +44,7 @@ public class Spark {
         } else if (text.equals("list")) {
             System.out.println("----------------");
             for (int i = 0; i < theList.size(); i++) {
-                System.out.println(i+1 + ". " + theList.get(i).getTaskInfo());
+                System.out.println(i + 1 + ". " + theList.get(i).getTaskInfo());
             }
             System.out.println("----------------");
 
@@ -84,14 +85,26 @@ public class Spark {
             // Extract Date
             String deadline = text.substring(text.indexOf("/by ") + 4);
             // Add to list
-            DeadlineTask item = new DeadlineTask(taskDescription, deadline);
-            theList.add(item);
-            // Response
-            System.out.println("----------------");
-            System.out.println("Bark! I've added the task!");
-            System.out.println(item.getTaskInfo());
-            System.out.println("You now have " + theList.size() + " tasks in list!");
-            System.out.println("----------------");
+            try {
+                // Create the task (This will now fail if date is not yyyy-mm-dd)
+                DeadlineTask item = new DeadlineTask(taskDescription, deadline);
+                theList.add(item);
+
+                // Save immediately
+                saveTasks(theList);
+
+                System.out.println("----------------");
+                System.out.println("Bark! I've added the task!");
+                System.out.println(item.getTaskInfo());
+                System.out.println("You now have " + theList.size() + " tasks in list!");
+                System.out.println("----------------");
+
+            } catch (java.time.format.DateTimeParseException e) {
+                System.out.println("----------------");
+                System.out.println("Bark! Invalid format. Use: yyyy-MM-dd HHmm");
+                System.out.println("Example: deadline return book /by 2019-12-02 1800");
+                System.out.println("----------------");
+            }
 
         } else if (Pattern.matches("^todo .+$", text)) {
             // ToDo Task
@@ -121,16 +134,23 @@ public class Spark {
             // Extract EndDate
             String endDate = text.substring(text.indexOf("/to ") + 4);
 
-            // Add to list
-            EventTask item = new EventTask(taskDescription, startDate, endDate);
-            theList.add(item);
+            try {
+                EventTask item = new EventTask(taskDescription, startDate, endDate);
+                theList.add(item);
+                saveTasks(theList);
 
-            // Response
-            System.out.println("----------------");
-            System.out.println("Bark! I've added the task!");
-            System.out.println(item.getTaskInfo());
-            System.out.println("You now have " + theList.size() + " tasks in list!");
-            System.out.println("----------------");
+                System.out.println("----------------");
+                System.out.println("Bark! I've added the Event!");
+                System.out.println(item.getTaskInfo());
+                System.out.println("You now have " + theList.size() + " tasks in list!");
+                System.out.println("----------------");
+
+            } catch (java.time.format.DateTimeParseException e) {
+                System.out.println("----------------");
+                System.out.println("Bark! Invalid format. Use: yyyy-MM-dd HHmm");
+                System.out.println("Example: event meeting /from 2019-12-02 1400 /to 2019-12-02 1600");
+                System.out.println("----------------");
+            }
 
         } else if (Pattern.matches("^delete [0-9]+$", text)) { // Regex to check specifically for input
             // Extract number - using regex
@@ -148,9 +168,7 @@ public class Spark {
             }
             System.out.println("----------------");
 
-        }
-
-        else { // Handle Invalid
+        } else { // Handle Invalid
             if (text.contains("todo")) {
                 throw new SparkException("Bark? todo (fill)?");
             } else if (text.contains("deadline")) {
@@ -173,7 +191,7 @@ public class Spark {
     private static final String DATA_PATH = "./data/spark.txt";
 
     public static void saveTasks(ArrayList<Task> theList) throws IOException {
-        try{
+        try {
             File folder = new File("./data");
 
             if (!folder.exists()) {
@@ -188,9 +206,9 @@ public class Spark {
                     String line = task.getType() + " | " + status + " | " + task.description;
 
                     if (task instanceof EventTask) {
-                        line += " | " + ((EventTask) task).getStartDate() + " | " + ((EventTask) task).getDeadline();
+                        line += " | " + ((EventTask) task).getStartDateIso() + " | " + ((EventTask) task).getEndDateIso();
                     } else if (task instanceof DeadlineTask) {
-                        line += " | " + ((DeadlineTask) task).getDeadline();
+                        line += " | " + ((DeadlineTask) task).getDeadlineIso();
                     }
 
                     fw.write(line + System.lineSeparator());
