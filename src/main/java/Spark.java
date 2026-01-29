@@ -1,10 +1,15 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;  // Import the Scanner class
 import java.util.regex.Pattern;
+import java.io.File; // Necessary for locating the file
+import java.io.FileNotFoundException; // Necessary for error handling
 
 public class Spark {
     // Level-0
     // Rename, Greet, Exit
+
     public static void greet() {
         String logo = " ____                   _\n" +
                 "/ ___| _ __   __ _ _ __| | __\n" +
@@ -25,7 +30,7 @@ public class Spark {
     // Add, List
     // Mark as Done
     // ToDos, Events, Deadlines
-    public static boolean echo(Scanner sc, ArrayList<Task> theList) throws SparkException {
+    public static boolean echo(Scanner sc, ArrayList<Task> theList) throws SparkException, IOException {
         // Guard
         if (!sc.hasNextLine()) {
             return false;
@@ -75,7 +80,7 @@ public class Spark {
         } else if (Pattern.matches("^deadline .+ /by .+$", text)) { // Checks for specific
             // Deadline Task
             // Extract Task
-            String taskDescription = text.substring(text.indexOf("deadline ") + 9, text.indexOf("/by"));
+            String taskDescription = text.substring(text.indexOf("deadline ") + 9, text.indexOf(" /by"));
             // Extract Date
             String deadline = text.substring(text.indexOf("/by ") + 4);
             // Add to list
@@ -156,13 +161,97 @@ public class Spark {
             throw new SparkException("Bark? I didn't quite get that! Fetch me a proper command!");
         }
 
+        // Write to data file
+        saveTasks(theList);
+
         return true;
     }
 
-    public static void main(String[] args) throws SparkException {
+    // Level 7
+    // Save
+
+    private static final String DATA_PATH = "./data/spark.txt";
+
+    public static void saveTasks(ArrayList<Task> theList) throws IOException {
+        try{
+            File folder = new File("./data");
+
+            if (!folder.exists()) {
+                folder.mkdirs();
+            }
+
+            try (FileWriter fw = new FileWriter("./data/spark.txt")) {
+
+                for (Task task : theList) {
+                    int status = task.getStatusIcon().equals("X") ? 1 : 0;
+
+                    String line = task.getType() + " | " + status + " | " + task.description;
+
+                    if (task instanceof EventTask) {
+                        line += " | " + ((EventTask) task).getStartDate() + " | " + ((EventTask) task).getDeadline();
+                    } else if (task instanceof DeadlineTask) {
+                        line += " | " + ((DeadlineTask) task).getDeadline();
+                    }
+
+                    fw.write(line + System.lineSeparator());
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Bark! I couldn't save my memory: " + e.getMessage());
+        }
+    }
+
+    public static void loadTasks(ArrayList<Task> theList) throws FileNotFoundException {
+        File f = new File(DATA_PATH);
+        if (!f.exists()) return;
+
+        Scanner sc = new Scanner(f);
+
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            String[] parts = line.split(" \\| ");
+
+            String type = parts[0];
+            boolean isDone = parts[1].equals("1");
+            String description = parts[2];
+
+            Task task;
+
+            switch (type) {
+                case "T":
+                    task = new Task(description);
+                    break;
+                case "D":
+                    String by = parts[3];
+                    task = new DeadlineTask(description, by);
+                    break;
+                case "E":
+                    String from = parts[3];
+                    String to = parts[4];
+                    task = new EventTask(description, from, to);
+                    break;
+                default:
+                    continue; // Skip unknown formats
+            }
+
+            if (isDone) {
+                task.markAsDone();
+            }
+
+            theList.add(task);
+        }
+
+        sc.close();
+    }
+
+    public static void main(String[] args) throws SparkException, FileNotFoundException {
 
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> theList = new ArrayList<>();
+
+        // Load existing data
+        loadTasks(theList);
         // Greet the user
         greet();
         // Initiate Echo
@@ -170,7 +259,7 @@ public class Spark {
         while (isRunning) {
             try {
                 isRunning = echo(sc, theList);
-            } catch (SparkException e) {
+            } catch (SparkException | IOException e) {
                 System.out.println("Error Sniffed! " + e.getMessage());
             }
         }
