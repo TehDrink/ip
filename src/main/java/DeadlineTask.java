@@ -1,21 +1,24 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class DeadlineTask extends Task {
-    String endDate;
+    LocalDateTime endDate;
 
     //    String endTime;
     public DeadlineTask(String description, String endDate) {
         super(description);
         this.type = "D";
-        this.endDate = endDate;
-//        this.endTime = endTime;
-    }
-
-    public String getDeadline() {
-        // Return
-        return this.endDate;
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        this.endDate = LocalDateTime.parse(endDate, inputFormatter);
     }
 
     @Override
     public String getTaskInfo() {
-        return super.getTaskInfo() + " (by: " + this.getDeadline() + ")";
+        String formattedDate = this.endDate.format(DateTimeFormatter.ofPattern("MMM d yyyy, h:mma"));
+        return super.getTaskInfo() + " (by: " + formattedDate + ")";
+    }
+
+    public String getDeadlineIso() {
+        return this.endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 }
