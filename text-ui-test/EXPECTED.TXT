@@ -17,19 +17,55 @@ You now have 1 tasks in list!
 1. [T][ ] borrow book
 ----------------
 ----------------
-Bark! I've added the task!
-[D][ ] return book (by: Sunday)
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: deadline return book /by 2019-12-02 1800
+----------------
+----------------
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: event meeting /from 2019-12-02 1400 /to 2019-12-02 1600
+----------------
+----------------
+Bark! I've added the Event!
+[E][ ] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
 You now have 2 tasks in list!
 ----------------
 ----------------
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: event meeting /from 2019-12-02 1400 /to 2019-12-02 1600
+----------------
+----------------
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: event meeting /from 2019-12-02 1400 /to 2019-12-02 1600
+----------------
+----------------
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: event meeting /from 2019-12-02 1400 /to 2019-12-02 1600
+----------------
+----------------
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: event meeting /from 2019-12-02 1400 /to 2019-12-02 1600
+----------------
+----------------
 Bark! I've added the task!
-[E][ ] project meeting (from: Mon 2pm to: 4pm)
+[D][ ] return book (by: Dec 2 2019, 6:00pm)
 You now have 3 tasks in list!
 ----------------
 ----------------
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: deadline return book /by 2019-12-02 1800
+----------------
+----------------
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: deadline return book /by 2019-12-02 1800
+----------------
+----------------
+Bark! Invalid format. Use: yyyy-MM-dd HHmm
+Example: deadline return book /by 2019-12-02 1800
+----------------
+----------------
 1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [E][ ] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
+3. [D][ ] return book (by: Dec 2 2019, 6:00pm)
 ----------------
 ----------------
 Marked as done! Awoo!
@@ -37,19 +73,19 @@ Marked as done! Awoo!
 ----------------
 ----------------
 Marked as done! Awoo!
-[D][X] return book (by: Sunday)
+[E][X] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
 ----------------
 ----------------
 Marked as done! Awoo!
-[E][X] project meeting (from: Mon 2pm to: 4pm)
+[D][X] return book (by: Dec 2 2019, 6:00pm)
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
 1. [T][X] borrow book
-2. [D][X] return book (by: Sunday)
-3. [E][X] project meeting (from: Mon 2pm to: 4pm)
+2. [E][X] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
+3. [D][X] return book (by: Dec 2 2019, 6:00pm)
 ----------------
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
@@ -59,11 +95,11 @@ Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
 Marked as new! Awoo!
-[E][ ] project meeting (from: Mon 2pm to: 4pm)
+[D][ ] return book (by: Dec 2 2019, 6:00pm)
 ----------------
 ----------------
 Marked as new! Awoo!
-[D][ ] return book (by: Sunday)
+[E][ ] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
 ----------------
 ----------------
 Marked as new! Awoo!
@@ -71,8 +107,8 @@ Marked as new! Awoo!
 ----------------
 ----------------
 1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [E][ ] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
+3. [D][ ] return book (by: Dec 2 2019, 6:00pm)
 ----------------
 Error Sniffed! Bark? todo (fill)?
 Error Sniffed! Bark? event (fill) /from (fill) /to (fill)?
@@ -91,8 +127,8 @@ Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
 1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+2. [E][ ] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
+3. [D][ ] return book (by: Dec 2 2019, 6:00pm)
 4. [T][ ] cook banana
 ----------------
 ----------------
@@ -102,12 +138,12 @@ You now have 3 tasks in list!
 ----------------
 ----------------
 Task removed! Removed the following Task Woof!
-[E][ ] project meeting (from: Mon 2pm to: 4pm)
+[D][ ] return book (by: Dec 2 2019, 6:00pm)
 You now have 2 tasks in list!
 ----------------
 ----------------
 Task removed! Removed the following Task Woof!
-[D][ ] return book (by: Sunday)
+[E][ ] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
 You now have 1 tasks in list!
 ----------------
 ----------------
