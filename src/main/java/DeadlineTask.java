@@ -16,6 +16,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String getTaskInfo() {
-        return super.getTaskInfo() + "(by: " + this.getDeadline() + ")";
+        return super.getTaskInfo() + " (by: " + this.getDeadline() + ")";
     }
 }
