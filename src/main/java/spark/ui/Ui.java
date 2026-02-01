@@ -1,3 +1,8 @@
+package spark.ui;
+import spark.commands.Parser;
+import spark.exceptions.SparkException;
+import spark.tasks.TaskList;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -26,13 +31,18 @@ public class Ui {
                     break;
                 }
                 Parser parser = new Parser(sc.nextLine());
-                System.out.println("----------------");
                 output = parser.parse(taskList);
-                System.out.println(output);
-                System.out.println("----------------");
+
+                if (output != null) {
+                    System.out.println("----------------");
+                    System.out.println(output);
+                    System.out.println("----------------");
+                }
 
             } catch (SparkException | IOException e) {
+                System.out.println("----------------");
                 System.out.println("Error Sniffed! " + e.getMessage());
+                System.out.println("----------------");
             }
         }
 
