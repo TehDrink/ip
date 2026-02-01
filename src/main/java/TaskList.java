@@ -21,7 +21,7 @@ public class TaskList {
         this.storage.saveTasks(this.taskList);
     }
 
-    public Task getTask(int index) throws IOException {
+    public Task getTask(int index) {
         return taskList.get(index);
     }
 

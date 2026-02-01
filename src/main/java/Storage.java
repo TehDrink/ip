@@ -14,7 +14,7 @@ public class Storage {
 
     // Level 7
     // Save
-    public void saveTasks(ArrayList<Task> taskList) throws IOException {
+    public void saveTasks(ArrayList<Task> taskList) {
         try {
             File folder = new File("./data");
 
