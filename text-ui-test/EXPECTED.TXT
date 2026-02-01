@@ -82,9 +82,12 @@ Marked as done! Awoo!
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
-Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
+----------------
+----------------
+Error Sniffed! Grrr, item does not exist! Try another Id Bark!
+----------------
 ----------------
 1. [T][X] borrow book
 2. [E][X] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
@@ -93,9 +96,12 @@ Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
-Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
+----------------
+----------------
+Error Sniffed! Grrr, item does not exist! Try another Id Bark!
+----------------
 ----------------
 Marked as new! Awoo!
 [D][ ] return book (by: Dec 2 2019, 6:00pm)
@@ -116,11 +122,15 @@ Marked as new! Awoo!
 ----------------
 Error Sniffed! Bark? todo (fill)?
 ----------------
+----------------
 Error Sniffed! Bark? event (fill) /from (fill) /to (fill)?
+----------------
 ----------------
 Error Sniffed! Bark? deadline (fill) /by (fill)?
 ----------------
+----------------
 Error Sniffed! Bark? event (fill) /from (fill) /to (fill)?
+----------------
 ----------------
 Bark! I've added the task!
 [T][ ] cook banana
@@ -129,11 +139,15 @@ You now have 4 tasks in list!
 ----------------
 Error Sniffed! Bark? deadline (fill) /by (fill)?
 ----------------
+----------------
 Error Sniffed! Bark? I didn't quite get that! Fetch me a proper command!
 ----------------
-Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
+----------------
+----------------
+Error Sniffed! Grrr, item does not exist! Try another Id Bark!
+----------------
 ----------------
 1. [T][ ] borrow book
 2. [E][ ] meeting (from: Dec 2 2019, 2:00pm to: Dec 2 2019, 4:00pm)
@@ -166,7 +180,9 @@ You now have 0 tasks in list!
 ----------------
 Error Sniffed! Grrr, item does not exist! Try another Id Bark!
 ----------------
+----------------
 Error Sniffed! Bark? I didn't quite get that! Fetch me a proper command!
+----------------
 ----------------
 See you soon! Bark!
 
