@@ -1,3 +1,9 @@
+package spark.storage;
+
+import spark.tasks.DeadlineTask;
+import spark.tasks.EventTask;
+import spark.tasks.Task;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -27,7 +33,7 @@ public class Storage {
                 for (Task task : taskList) {
                     int status = task.getStatusIcon().equals("X") ? 1 : 0;
 
-                    String line = task.getType() + " | " + status + " | " + task.description;
+                    String line = task.getType() + " | " + status + " | " + task.getDescription();
 
                     if (task instanceof EventTask) {
                         line += " | " + ((EventTask) task).getStartDateIso() + " | " + ((EventTask) task).getEndDateIso();

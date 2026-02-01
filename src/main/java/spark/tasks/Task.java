@@ -1,3 +1,5 @@
+package spark.tasks;
+
 // Level 3
 // Mark as Done
 public class Task {
@@ -17,6 +19,10 @@ public class Task {
 
     public String getTaskInfo() {
         return "[" + this.getType() + "][" + this.getStatusIcon() + "] " + description;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     public int getTaskId() {

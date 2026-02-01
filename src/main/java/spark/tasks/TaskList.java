@@ -1,3 +1,7 @@
+package spark.tasks;
+
+import spark.storage.Storage;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;

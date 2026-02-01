@@ -1,3 +1,9 @@
+package spark;
+
+import spark.storage.Storage;
+import spark.tasks.TaskList;
+import spark.ui.Ui;
+
 import java.io.FileNotFoundException; // Necessary for error handling
 
 // A-MoreOOP

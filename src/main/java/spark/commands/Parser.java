@@ -1,3 +1,10 @@
+package spark.commands;
+
+import spark.exceptions.SparkException;
+import spark.tasks.TaskList;
+import spark.tasks.DeadlineTask;
+import spark.tasks.EventTask;
+import spark.tasks.Task;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
