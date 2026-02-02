@@ -5,7 +5,9 @@ import spark.tasks.TaskList;
 import spark.tasks.DeadlineTask;
 import spark.tasks.EventTask;
 import spark.tasks.Task;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 
@@ -25,11 +27,12 @@ public class Parser {
         this.input = input;
     }
 
-    // Level-1 & Level-2 & Level-3 & Level-4
+    // Level-1 & Level-2 & Level-3 & Level-4 & Level-9
     // Echo
     // Add, List
     // Mark as Done
     // ToDos, Events, Deadlines
+    // Find
 
     /**
      * Parses the user input and executes the corresponding command on the TaskList.
@@ -153,6 +156,20 @@ public class Parser {
                 text.append("You now have ").append(taskList.size()).append(" tasks in list!");
             }
 
+        } else if (Pattern.matches("^find .+$", input)) { // Regex to check specifically for input
+            String searchString = input.substring(input.indexOf("find ") + 5);
+            ArrayList<Task> results = taskList.findTasks(searchString);
+            if (results.isEmpty()) {
+                text.append("Bark! No matching tasks found!");
+            } else {
+                text.append("Bark! Here are the matching tasks in your list:\n");
+                for (int i = 0; i < results.size(); i++) {
+                    text.append(i + 1).append(". ").append(results.get(i).getTaskInfo());
+                    if (i + 1 != results.size()) {
+                        text.append("\n");
+                    }
+                }
+            }
         } else { // Handle Invalid
             if (input.contains("todo")) {
                 throw new SparkException("Bark? todo (fill)?");
