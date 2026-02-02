@@ -1,16 +1,28 @@
 package spark.commands;
 
+import java.io.IOException;
+import java.time.format.DateTimeParseException;
+import java.util.regex.Pattern;
+
 import spark.exceptions.SparkException;
 import spark.tasks.TaskList;
 import spark.tasks.DeadlineTask;
 import spark.tasks.EventTask;
 import spark.tasks.Task;
-import java.io.IOException;
-import java.util.regex.Pattern;
 
+/**
+ * Handles the interpretation and execution of user commands.
+ * The Parser takes raw input strings and converts them into actions
+ * performed on the TaskList object.
+ */
 public class Parser {
-    String input;
+    private String input;
 
+    /**
+     * Constructor for Parser class.
+     *
+     * @param input The raw user input string to be parsed.
+     */
     public Parser(String input) {
         this.input = input;
     }
@@ -20,6 +32,17 @@ public class Parser {
     // Add, List
     // Mark as Done
     // ToDos, Events, Deadlines
+
+    /**
+     * Parses the user input and executes the corresponding command on the TaskList.
+     * Handles creating tasks (Todo, Deadline, Event), marking/unmarking tasks,
+     * deleting tasks, and listing all tasks.
+     *
+     * @param taskList The TaskList object to perform actions on.
+     * @return A response string indicating the result of the command to be supplied to Ui.
+     * @throws SparkException If the command is invalid or cannot be executed.
+     * @throws IOException    If there is an error reading or writing data.
+     */
     public String parse(TaskList taskList) throws SparkException, IOException {
         StringBuilder text = new StringBuilder();
 
@@ -73,7 +96,7 @@ public class Parser {
                 text.append(item.getTaskInfo());
                 text.append("\nYou now have ").append(taskList.size()).append(" tasks in list!");
 
-            } catch (java.time.format.DateTimeParseException e) {
+            } catch (DateTimeParseException e) {
                 text.append("Bark! Invalid format. Use: yyyy-MM-dd HHmm\n");
                 text.append("Example: deadline return book /by 2019-12-02 1800");
             }
@@ -112,7 +135,7 @@ public class Parser {
                 text.append(item.getTaskInfo()).append("\n");
                 text.append("You now have ").append(taskList.size()).append(" tasks in list!");
 
-            } catch (java.time.format.DateTimeParseException e) {
+            } catch (DateTimeParseException e) {
                 text.append("Bark! Invalid format. Use: yyyy-MM-dd HHmm\n");
                 text.append("Example: event meeting /from 2019-12-02 1400 /to 2019-12-02 1600");
             }

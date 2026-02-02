@@ -1,9 +1,5 @@
 package spark.storage;
 
-import spark.tasks.DeadlineTask;
-import spark.tasks.EventTask;
-import spark.tasks.Task;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,15 +7,36 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import spark.tasks.DeadlineTask;
+import spark.tasks.EventTask;
+import spark.tasks.Task;
+
+/**
+ * Manages the loading and saving of tasks to a persistent storage file.
+ * The Storage class handles reading tasks from a file during initialization
+ * and writing tasks back to the file when changes occur.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructor for Storage class.
+     *
+     * @param filePath The path to the file used for storing tasks.
+     */
     public Storage(String path) {
         this.filePath = path;
     }
 
     // Level 7
     // Save
+
+    /**
+     * Saves the current list of tasks to the storage file.
+     * The method writes each task in a specific pipe-separated format.
+     *
+     * @param taskList The ArrayList of Task objects to be saved.
+     */
     public void saveTasks(ArrayList<Task> taskList) {
         try {
             File folder = new File("./data");
@@ -28,7 +45,7 @@ public class Storage {
                 folder.mkdirs();
             }
 
-            try (FileWriter fw = new FileWriter(filePath)) {
+            try (FileWriter fileWriter = new FileWriter(filePath)) {
 
                 for (Task task : taskList) {
                     int status = task.getStatusIcon().equals("X") ? 1 : 0;
@@ -41,7 +58,7 @@ public class Storage {
                         line += " | " + ((DeadlineTask) task).getDeadlineIso();
                     }
 
-                    fw.write(line + System.lineSeparator());
+                    fileWriter.write(line + System.lineSeparator());
                 }
             }
 
@@ -50,15 +67,24 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the storage file into an ArrayList by parsing pipe-separated values.
+     * The method reads each line from the file, parses it, and creates Task objects accordingly.
+     *
+     * @return An ArrayList of Task objects loaded from the file. Return empty list if file does not exist or no items in list.
+     * @throws FileNotFoundException If the storage file does not exist.
+     */
     public ArrayList<Task> loadTasks() throws FileNotFoundException {
         ArrayList<Task> taskList = new ArrayList<>();
-        File f = new File(filePath);
-        if (!f.exists()) return new ArrayList<Task>();
+        File file = new File(filePath);
+        if (!file.exists()) {
+            return new ArrayList<Task>();
+        }
 
-        Scanner sc = new Scanner(f);
+        Scanner scanner = new Scanner(file);
 
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
             String[] parts = line.split(" \\| ");
 
             String type = parts[0];
@@ -68,20 +94,20 @@ public class Storage {
             Task task;
 
             switch (type) {
-                case "T":
-                    task = new Task(description);
-                    break;
-                case "D":
-                    String by = parts[3];
-                    task = new DeadlineTask(description, by);
-                    break;
-                case "E":
-                    String from = parts[3];
-                    String to = parts[4];
-                    task = new EventTask(description, from, to);
-                    break;
-                default:
-                    continue; // Skip unknown formats
+            case "T":
+                task = new Task(description);
+                break;
+            case "D":
+                String by = parts[3];
+                task = new DeadlineTask(description, by);
+                break;
+            case "E":
+                String from = parts[3];
+                String to = parts[4];
+                task = new EventTask(description, from, to);
+                break;
+            default:
+                continue; // Skip unknown formats
             }
 
             if (isDone) {
@@ -91,7 +117,7 @@ public class Storage {
             taskList.add(task);
         }
 
-        sc.close();
+        scanner.close();
         return taskList;
     }
 
