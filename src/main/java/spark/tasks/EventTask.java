@@ -10,9 +10,8 @@ import java.time.format.DateTimeFormatter;
  * Inherits from the Task class.
  */
 public class EventTask extends Task {
-    String description;
-    LocalDateTime startDate;
-    LocalDateTime endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     // Start Date
     // Start Date Time
     // End Date
@@ -20,9 +19,10 @@ public class EventTask extends Task {
 
     /**
      * Constructor for EventTask class.
+     *
      * @param description The description of the event task.
-     * @param startDate The start date of the event task in "yyyy-MM-dd HHmm" format.
-     * @param endDate The end date of the event task in "yyyy-MM-dd HHmm" format.
+     * @param startDate   The start date of the event task in "yyyy-MM-dd HHmm" format.
+     * @param endDate     The end date of the event task in "yyyy-MM-dd HHmm" format.
      */
     public EventTask(String description, String startDate, String endDate) {
         super(description);
@@ -34,6 +34,7 @@ public class EventTask extends Task {
 
     /**
      * Gets the start date in ISO format.
+     *
      * @return The start date as a string in "yyyy-MM-dd HHmm" format
      */
     public String getStartDateIso() {
@@ -42,6 +43,7 @@ public class EventTask extends Task {
 
     /**
      * Gets the end date in ISO format.
+     *
      * @return The end date as a string in "yyyy-MM-dd HHmm" format
      */
     public String getEndDateIso() {

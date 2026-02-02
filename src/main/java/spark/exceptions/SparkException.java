@@ -7,9 +7,10 @@ package spark.exceptions;
 public class SparkException extends Exception {
     /**
      * Constructor for SparkException.
+     *
      * @param message The error message associated with the exception.
      */
-    public SparkException(String m){
-        super(m);
+    public SparkException(String message) {
+        super(message);
     }
 }

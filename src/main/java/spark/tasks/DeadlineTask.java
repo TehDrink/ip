@@ -10,12 +10,13 @@ import java.time.format.DateTimeFormatter;
  * Inherits from the Task class.
  */
 public class DeadlineTask extends Task {
-    LocalDateTime endDate;
+    private LocalDateTime endDate;
 
     /**
      * Constructor for DeadlineTask class.
+     *
      * @param description The description of the deadline task.
-     * @param endDate The due date of the deadline task in "yyyy-MM-dd HHmm" format.
+     * @param endDate     The due date of the deadline task in "yyyy-MM-dd HHmm" format.
      */
     public DeadlineTask(String description, String endDate) {
         super(description);
@@ -33,6 +34,7 @@ public class DeadlineTask extends Task {
 
     /**
      * Gets the end date in ISO format.
+     *
      * @return The end date as a string in "yyyy-MM-dd HHmm" format.
      */
     public String getDeadlineIso() {

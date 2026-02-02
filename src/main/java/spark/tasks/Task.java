@@ -6,14 +6,15 @@ package spark.tasks;
  */
 public class Task {
 
-    String description;
-    String type;
-    boolean isDone;
-    int taskId = 1;
-    static int counter = 1;
+    private String description;
+    protected String type;
+    private boolean isDone;
+    private int taskId = 1;
+    private static int counter = 1;
 
     /**
      * Constructor for Task class.
+     *
      * @param description The description of the task.
      */
     public Task(String description) {
@@ -25,6 +26,7 @@ public class Task {
 
     /**
      * Gets the task info in a formatted string.
+     *
      * @return The formatted task information string.
      */
     public String getTaskInfo() {
@@ -33,6 +35,7 @@ public class Task {
 
     /**
      * Gets the description of the task.
+     *
      * @return The task description.
      */
     public String getDescription() {
@@ -41,6 +44,7 @@ public class Task {
 
     /**
      * Gets the id of the task.
+     *
      * @return The task id as an integer.
      */
     public int getTaskId() {
@@ -56,6 +60,7 @@ public class Task {
 
     /**
      * Gets the status icon representing whether the task is done.
+     *
      * @return "X" if the task is done, otherwise a space " ".
      */
     public String getStatusIcon() {

@@ -1,10 +1,11 @@
 package spark.ui;
-import spark.commands.Parser;
-import spark.exceptions.SparkException;
-import spark.tasks.TaskList;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import spark.commands.Parser;
+import spark.exceptions.SparkException;
+import spark.tasks.TaskList;
 
 /**
  * Handles user interactions, including displaying messages and receiving input.
@@ -12,10 +13,11 @@ import java.util.Scanner;
  * and to read user commands from the console.
  */
 public class Ui {
-    TaskList taskList;
+    private TaskList taskList;
 
     /**
      * Constructor for Ui class.
+     *
      * @param taskList The TaskList object to be used for displaying tasks.
      */
     public Ui(TaskList taskList) {

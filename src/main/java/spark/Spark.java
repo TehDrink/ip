@@ -1,10 +1,10 @@
 package spark;
 
+import java.io.FileNotFoundException; // Necessary for error handling
+
 import spark.storage.Storage;
 import spark.tasks.TaskList;
 import spark.ui.Ui;
-
-import java.io.FileNotFoundException; // Necessary for error handling
 
 /**
  * A-MoreOOP
@@ -20,6 +20,7 @@ public class Spark {
     /**
      * Constructor for Spark class.
      * Initializes the Storage, TaskList, and Ui components.
+     *
      * @throws FileNotFoundException If the storage file is not found during TaskList initialization.
      */
     public Spark(String filePath) throws FileNotFoundException {
@@ -38,6 +39,7 @@ public class Spark {
 
     /**
      * The main method to run the Spark application.
+     *
      * @param args Command-line arguments (not used).
      * @throws FileNotFoundException If the storage file is not found during initialization.
      */
