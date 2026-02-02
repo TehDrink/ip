@@ -25,6 +25,21 @@ public class TaskList {
         this.storage.saveTasks(this.taskList);
     }
 
+    /**
+     * find the tasks that contain the keyword
+     * @param keyword keyword to search for
+     * @return list of tasks that contain the keyword
+     */
+    public ArrayList<Task> findTasks(String keyword) {
+        ArrayList<Task> foundTasks = new ArrayList<Task>();
+        for (Task task : taskList) {
+            if (task.getDescription().contains(keyword)) {
+                foundTasks.add(task);
+            }
+        }
+        return foundTasks;
+    }
+
     public Task getTask(int index) {
         return taskList.get(index);
     }
