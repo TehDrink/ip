@@ -3,6 +3,12 @@ package spark.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Level 4
+ * Event Task
+ * Represents an event task with a description, start date, and end date.
+ * Inherits from the Task class.
+ */
 public class EventTask extends Task {
     String description;
     LocalDateTime startDate;
@@ -12,6 +18,12 @@ public class EventTask extends Task {
     // End Date
     // End Date Time
 
+    /**
+     * Constructor for EventTask class.
+     * @param description The description of the event task.
+     * @param startDate The start date of the event task in "yyyy-MM-dd HHmm" format.
+     * @param endDate The end date of the event task in "yyyy-MM-dd HHmm" format.
+     */
     public EventTask(String description, String startDate, String endDate) {
         super(description);
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -20,10 +32,18 @@ public class EventTask extends Task {
         this.type = "E";
     }
 
+    /**
+     * Gets the start date in ISO format.
+     * @return The start date as a string in "yyyy-MM-dd HHmm" format
+     */
     public String getStartDateIso() {
         return this.startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
+    /**
+     * Gets the end date in ISO format.
+     * @return The end date as a string in "yyyy-MM-dd HHmm" format
+     */
     public String getEndDateIso() {
         return this.endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }

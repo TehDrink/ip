@@ -6,18 +6,31 @@ import spark.tasks.TaskList;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Deal with interactions with user
+/**
+ * Handles user interactions, including displaying messages and receiving input.
+ * The Ui class provides methods to show welcome messages, error messages,
+ * and to read user commands from the console.
+ */
 public class Ui {
     TaskList taskList;
 
+    /**
+     * Constructor for Ui class.
+     * @param taskList The TaskList object to be used for displaying tasks.
+     */
     public Ui(TaskList taskList) {
         // Receive input
         // Send to parser
         this.taskList = taskList;
     }
 
-    // Level-0
-    // Rename, Greet, Exit
+    /**
+     * Level-0
+     * Rename, Greet, Exit
+     * Starts the main interaction loop of the application.
+     * Continuously reads user input, sends it to the Parser, and displays the result
+     * until termination command is received.
+     */
     public void start() {
         Scanner sc = new Scanner(System.in);
         String output = "";
@@ -51,7 +64,9 @@ public class Ui {
         System.out.println("See you soon! Bark!\n");
     }
 
-
+    /**
+     * Displays a greeting message to the user.
+     */
     public void greet() {
         String logo = " ____                   _\n" +
                 "/ ___| _ __   __ _ _ __| | __\n" +

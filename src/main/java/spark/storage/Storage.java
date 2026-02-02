@@ -10,16 +10,29 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Manages the loading and saving of tasks to a persistent storage file.
+ * The Storage class handles reading tasks from a file during initialization
+ * and writing tasks back to the file when changes occur.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructor for Storage class.
+     * @param filePath The path to the file used for storing tasks.
+     */
     public Storage(String path) {
         this.filePath = path;
     }
 
     // Level 7
     // Save
+    /**
+     * Saves the current list of tasks to the storage file.
+     * The method writes each task in a specific pipe-separated format.
+     * @param taskList The ArrayList of Task objects to be saved.
+     */
     public void saveTasks(ArrayList<Task> taskList) {
         try {
             File folder = new File("./data");
@@ -49,7 +62,12 @@ public class Storage {
             System.out.println("Bark! I couldn't save my memory: " + e.getMessage());
         }
     }
-
+    /**
+     * Loads tasks from the storage file into an ArrayList by parsing pipe-separated values.
+     * The method reads each line from the file, parses it, and creates Task objects accordingly.
+     * @return An ArrayList of Task objects loaded from the file. Return empty list if file does not exist or no items in list.
+     * @throws FileNotFoundException If the storage file does not exist.
+     */
     public ArrayList<Task> loadTasks() throws FileNotFoundException {
         ArrayList<Task> taskList = new ArrayList<>();
         File f = new File(filePath);
