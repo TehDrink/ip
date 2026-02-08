@@ -13,7 +13,6 @@ import spark.ui.Ui;
  * Made project more OOP!
  */
 public class Spark {
-    private static final String DATA_PATH = "./data/spark.txt";
     private final Ui ui;
     private TaskList tasks;
 
@@ -33,17 +32,26 @@ public class Spark {
     /**
      * Starts the Spark application by invoking the UI's start method.
      */
-    public void start() {
-        ui.start();
+    public String run(String input) {
+        return ui.run(input);
     }
 
     /**
-     * Runs the Spark application.
+     * Returns the greeting message from the UI.
      *
-     * @param args Command-line arguments (not used).
-     * @throws FileNotFoundException If the storage file is not found during initialization.
+     * @return A string containing the greeting message.
      */
-    public static void main(String[] args) throws FileNotFoundException {
-        new Spark(DATA_PATH).start();
+    public String getGreeting() {
+        return ui.sayGreeting();
     }
+
+    /**
+     * Returns the goodbye message from the UI.
+     *
+     * @return A string containing the goodbye message.
+     */
+    public String getGoodbye() {
+        return ui.sayGoodbye();
+    }
+
 }
