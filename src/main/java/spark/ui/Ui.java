@@ -1,7 +1,6 @@
 package spark.ui;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import spark.commands.Parser;
 import spark.exceptions.SparkException;
@@ -33,55 +32,56 @@ public class Ui {
      * Continuously reads user input, sends it to the Parser, and displays the result
      * until termination command is received.
      */
-    public void start() {
-        Scanner sc = new Scanner(System.in);
+    public String run(String input) {
         String output = "";
+        // Parse each line
+        try {
+            Parser parser = new Parser(input);
+            output = parser.parse(taskList);
 
-        this.greet();
+            if (output != null) {
+//                System.out.println("----------------");
+//                System.out.println(output);
+//                System.out.println("----------------");
 
-        while (output != null) {
-            // Parse each line
-            try {
-                if (!sc.hasNextLine()) {
-                    break;
-                }
-                Parser parser = new Parser(sc.nextLine());
-                output = parser.parse(taskList);
-
-                if (output != null) {
-                    System.out.println("----------------");
-                    System.out.println(output);
-                    System.out.println("----------------");
-                }
-
-            } catch (SparkException | IOException e) {
-                System.out.println("----------------");
-                System.out.println("Error Sniffed! " + e.getMessage());
-                System.out.println("----------------");
+                return (output);
+            } else {
+                // Exit
+                return "";
             }
+
+        } catch (SparkException | IOException e) {
+//            System.out.println("----------------");
+//            System.out.println("Error Sniffed! " + e.getMessage());
+//            System.out.println("----------------");
+            return "Error Sniffed! " + e.getMessage();
         }
 
-        // Say Goodbye
-        System.out.println("----------------");
-        System.out.println("See you soon! Bark!\n");
     }
 
     /**
      * Displays a greeting message to the user.
      */
-    public void greet() {
-        String logo = " ____                   _\n" +
-                "/ ___| _ __   __ _ _ __| | __\n" +
-                "\\___ \\| '_ \\ / _` | '__| |/ /\n" +
-                " ___) | |_) | (_| | |  |   <\n" +
-                "|____/| .__/ \\__,_|_|  |_|\\_\\\n" +
-                "      |_|";
-        System.out.println(logo);
-        System.out.println("----------------");
-        System.out.println("Bark! Hello I am Spark! I am dog!");
-        System.out.println("What can I fetch for you today, Bark?");
-        System.out.println("----------------");
+    public String sayGreeting() {
+//        String logo = " ____                   _\n" +
+//                "/ ___| _ __   __ _ _ __| | __\n" +
+//                "\\___ \\| '_ \\ / _` | '__| |/ /\n" +
+//                " ___) | |_) | (_| | |  |   <\n" +
+//                "|____/| .__/ \\__,_|_|  |_|\\_\\\n" +
+//                "      |_|";
+//        System.out.println(logo);
+//        System.out.println("----------------");
+//        System.out.println("Bark! Hello I am Spark! I am dog!");
+//        System.out.println("What can I fetch for you today, Bark?");
+//        System.out.println("----------------");
+        return "Bark! Hello I am Spark! I am dog!\nWhat can I fetch for you today, Bark?";
 
     }
 
+    public String sayGoodbye() {
+        // Say Goodbye
+//        System.out.println("----------------");
+//        System.out.println("See you soon! Bark!\n");
+        return "See you soon! Bark!";
+    }
 }
