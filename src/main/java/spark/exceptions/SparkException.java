@@ -6,7 +6,7 @@ package spark.exceptions;
  */
 public class SparkException extends Exception {
     /**
-     * Constructor for SparkException.
+     * Constructs the SparkException class. (Constructor)
      *
      * @param message The error message associated with the exception.
      */

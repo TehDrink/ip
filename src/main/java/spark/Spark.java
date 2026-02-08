@@ -7,18 +7,18 @@ import spark.tasks.TaskList;
 import spark.ui.Ui;
 
 /**
+ * Initializes the necessary components and starts the user interface.
+ * The main class for the Spark application.
  * A-MoreOOP
  * Made project more OOP!
- * The main class for the Spark application.
- * It initializes the necessary components and starts the user interface.
  */
 public class Spark {
+    private static final String DATA_PATH = "./data/spark.txt";
     private final Ui ui;
     private TaskList tasks;
-    private static final String DATA_PATH = "./data/spark.txt";
 
     /**
-     * Constructor for Spark class.
+     * Constructs the Spark class. (Constructor)
      * Initializes the Storage, TaskList, and Ui components.
      *
      * @throws FileNotFoundException If the storage file is not found during TaskList initialization.
@@ -38,7 +38,7 @@ public class Spark {
     }
 
     /**
-     * The main method to run the Spark application.
+     * Runs the Spark application.
      *
      * @param args Command-line arguments (not used).
      * @throws FileNotFoundException If the storage file is not found during initialization.

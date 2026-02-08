@@ -13,25 +13,25 @@ import spark.tasks.TaskList;
  * and to read user commands from the console.
  */
 public class Ui {
-    private TaskList taskList;
+    private TaskList tasks;
 
     /**
-     * Constructor for Ui class.
+     * Constructs the Ui class. (Constructor)
      *
-     * @param taskList The TaskList object to be used for displaying tasks.
+     * @param tasks The TaskList object to be used for displaying tasks.
      */
-    public Ui(TaskList taskList) {
+    public Ui(TaskList tasks) {
         // Receive input
         // Send to parser
-        this.taskList = taskList;
+        this.tasks = tasks;
     }
 
     /**
-     * Level-0
-     * Rename, Greet, Exit
      * Starts the main interaction loop of the application.
      * Continuously reads user input, sends it to the Parser, and displays the result
      * until termination command is received.
+     * Level-0
+     * Rename, Greet, Exit
      */
     public void start() {
         Scanner sc = new Scanner(System.in);
@@ -46,7 +46,7 @@ public class Ui {
                     break;
                 }
                 Parser parser = new Parser(sc.nextLine());
-                output = parser.parse(taskList);
+                output = parser.parse(tasks);
 
                 if (output != null) {
                     System.out.println("----------------");
@@ -70,12 +70,12 @@ public class Ui {
      * Displays a greeting message to the user.
      */
     public void greet() {
-        String logo = " ____                   _\n" +
-                "/ ___| _ __   __ _ _ __| | __\n" +
-                "\\___ \\| '_ \\ / _` | '__| |/ /\n" +
-                " ___) | |_) | (_| | |  |   <\n" +
-                "|____/| .__/ \\__,_|_|  |_|\\_\\\n" +
-                "      |_|";
+        String logo = " ____                   _\n"
+                + "/ ___| _ __   __ _ _ __| | __\n"
+                + "\\___ \\| '_ \\ / _` | '__| |/ /\n"
+                + " ___) | |_) | (_| | |  |   <\n"
+                + "|____/| .__/ \\__,_|_|  |_|\\_\\\n"
+                + "      |_|";
         System.out.println(logo);
         System.out.println("----------------");
         System.out.println("Bark! Hello I am Spark! I am dog!");

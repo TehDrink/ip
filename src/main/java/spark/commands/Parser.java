@@ -1,15 +1,14 @@
 package spark.commands;
 
-import spark.exceptions.SparkException;
-import spark.tasks.TaskList;
-import spark.tasks.DeadlineTask;
-import spark.tasks.EventTask;
-import spark.tasks.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import spark.exceptions.SparkException;
+import spark.tasks.DeadlineTask;
+import spark.tasks.EventTask;
+import spark.tasks.Task;
+import spark.tasks.TaskList;
 
 /**
  * Handles the interpretation and execution of user commands.
@@ -17,10 +16,11 @@ import java.util.regex.Pattern;
  * performed on the TaskList object.
  */
 public class Parser {
-    String input;
+    private String input;
 
     /**
-     * Constructor for Parser class.
+     * Constructs the Parser class. (Constructor)
+     *
      * @param input The raw user input string to be parsed.
      */
     public Parser(String input) {
@@ -42,7 +42,7 @@ public class Parser {
      * @param taskList The TaskList object to perform actions on.
      * @return A response string indicating the result of the command to be supplied to Ui.
      * @throws SparkException If the command is invalid or cannot be executed.
-     * @throws IOException If there is an error reading or writing data.
+     * @throws IOException    If there is an error reading or writing data.
      */
     public String parse(TaskList taskList) throws SparkException, IOException {
         StringBuilder text = new StringBuilder();
@@ -50,9 +50,9 @@ public class Parser {
         if (input.equals("bye")) {
             return null;
         } else if (input.equals("list")) {
-            for (int i = 0; i < taskList.size(); i++) {
+            for (int i = 0; i < taskList.getSize(); i++) {
                 text.append(i + 1).append(". ").append(taskList.getTask(i).getTaskInfo());
-                if (i + 1 != taskList.size()) {
+                if (i + 1 != taskList.getSize()) {
                     text.append("\n");
                 }
             }
@@ -61,7 +61,7 @@ public class Parser {
             // Extract number - using regex
             input = input.replaceAll("[^0-9]", "");
             int target = Integer.parseInt(input) - 1;
-            if (target >= taskList.size() || target < 0) {
+            if (target >= taskList.getSize() || target < 0) {
                 throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
             } else {
                 taskList.getTask(target).markAsDone();
@@ -73,7 +73,7 @@ public class Parser {
             // Extract number - using regex
             input = input.replaceAll("[^0-9]", "");
             int target = Integer.parseInt(input) - 1;
-            if (target >= taskList.size() || target < 0) {
+            if (target >= taskList.getSize() || target < 0) {
                 throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
             } else {
                 taskList.getTask(target).markAsNew();
@@ -95,7 +95,7 @@ public class Parser {
 
                 text.append("Bark! I've added the task!").append("\n");
                 text.append(item.getTaskInfo());
-                text.append("\nYou now have ").append(taskList.size()).append(" tasks in list!");
+                text.append("\nYou now have ").append(taskList.getSize()).append(" tasks in list!");
 
             } catch (java.time.format.DateTimeParseException e) {
                 text.append("Bark! Invalid format. Use: yyyy-MM-dd HHmm\n");
@@ -114,7 +114,7 @@ public class Parser {
             // Response
             text.append("Bark! I've added the task!").append("\n");
             text.append(item.getTaskInfo());
-            text.append("\nYou now have ").append(taskList.size()).append(" tasks in list!");
+            text.append("\nYou now have ").append(taskList.getSize()).append(" tasks in list!");
 
         } else if (Pattern.matches("^event .+ /from .+ /to .+$", input)) { // Checks for specific
 
@@ -134,7 +134,7 @@ public class Parser {
 
                 text.append("Bark! I've added the Event!\n");
                 text.append(item.getTaskInfo()).append("\n");
-                text.append("You now have ").append(taskList.size()).append(" tasks in list!");
+                text.append("You now have ").append(taskList.getSize()).append(" tasks in list!");
 
             } catch (java.time.format.DateTimeParseException e) {
                 text.append("Bark! Invalid format. Use: yyyy-MM-dd HHmm\n");
@@ -147,13 +147,13 @@ public class Parser {
             int target = Integer.parseInt(input) - 1;
 
 
-            if (target >= taskList.size() || target < 0) {
+            if (target >= taskList.getSize() || target < 0) {
                 throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
             } else {
                 text.append("Task removed! Removed the following Task Woof!\n");
                 text.append(taskList.getTask(target).getTaskInfo()).append("\n");
                 taskList.removeTask(target);
-                text.append("You now have ").append(taskList.size()).append(" tasks in list!");
+                text.append("You now have ").append(taskList.getSize()).append(" tasks in list!");
             }
 
         } else if (Pattern.matches("^find .+$", input)) { // Regex to check specifically for input
