@@ -13,7 +13,7 @@ public class DeadlineTask extends Task {
     private LocalDateTime endDate;
 
     /**
-     * Constructor for DeadlineTask class.
+     * Constructs the DeadlineTask class. (Constructor)
      *
      * @param description The description of the deadline task.
      * @param endDate     The due date of the deadline task in "yyyy-MM-dd HHmm" format.

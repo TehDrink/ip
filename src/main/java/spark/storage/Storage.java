@@ -20,12 +20,12 @@ public class Storage {
     private String filePath;
 
     /**
-     * Constructor for Storage class.
+     * Constructs the Storage class. (Constructor)
      *
      * @param filePath The path to the file used for storing tasks.
      */
-    public Storage(String path) {
-        this.filePath = path;
+    public Storage(String filePath) {
+        this.filePath = filePath;
     }
 
     // Level 7
@@ -53,7 +53,8 @@ public class Storage {
                     String line = task.getType() + " | " + status + " | " + task.getDescription();
 
                     if (task instanceof EventTask) {
-                        line += " | " + ((EventTask) task).getStartDateIso() + " | " + ((EventTask) task).getEndDateIso();
+                        line += " | " + ((EventTask) task).getStartDateIso() + " | "
+                                + ((EventTask) task).getEndDateIso();
                     } else if (task instanceof DeadlineTask) {
                         line += " | " + ((DeadlineTask) task).getDeadlineIso();
                     }
@@ -71,7 +72,8 @@ public class Storage {
      * Loads tasks from the storage file into an ArrayList by parsing pipe-separated values.
      * The method reads each line from the file, parses it, and creates Task objects accordingly.
      *
-     * @return An ArrayList of Task objects loaded from the file. Return empty list if file does not exist or no items in list.
+     * @return An ArrayList of Task objects loaded from the file.
+     *         Return empty list if file does not exist or no items in list.
      * @throws FileNotFoundException If the storage file does not exist.
      */
     public ArrayList<Task> loadTasks() throws FileNotFoundException {
@@ -85,11 +87,11 @@ public class Storage {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] parts = line.split(" \\| ");
+            String[] splitInput = line.split(" \\| ");
 
-            String type = parts[0];
-            boolean isDone = parts[1].equals("1");
-            String description = parts[2];
+            String type = splitInput[0];
+            boolean isDone = splitInput[1].equals("1");
+            String description = splitInput[2];
 
             Task task;
 
@@ -98,12 +100,12 @@ public class Storage {
                 task = new Task(description);
                 break;
             case "D":
-                String by = parts[3];
+                String by = splitInput[3];
                 task = new DeadlineTask(description, by);
                 break;
             case "E":
-                String from = parts[3];
-                String to = parts[4];
+                String from = splitInput[3];
+                String to = splitInput[4];
                 task = new EventTask(description, from, to);
                 break;
             default:

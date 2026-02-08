@@ -1,7 +1,5 @@
 package spark.tasks;
 
-import spark.storage.Storage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ public class TaskList {
     private Storage storage;
 
     /**
-     * Constructor for TaskList class.
+     * Constructs the TaskList class. (Constructor)
      * Initializes the task list by loading tasks from the provided Storage object.
      *
      * @param storage The Storage object used to load and save tasks.
@@ -51,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * find the tasks that contain the keyword
+     * Finds the tasks that contain the keyword
      * @param keyword keyword to search for
      * @return list of tasks that contain the keyword
      */
@@ -80,7 +78,7 @@ public class TaskList {
      *
      * @return The size of the task list.
      */
-    public int size() {
+    public int getSize() {
         return taskList.size();
     }
 

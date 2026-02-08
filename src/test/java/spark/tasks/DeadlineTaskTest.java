@@ -1,8 +1,8 @@
 package spark.tasks;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class DeadlineTaskTest {
 
@@ -14,7 +14,7 @@ public class DeadlineTaskTest {
     }
 
     @Test
-    public void getDeadlineIso_checkStorageFormat() {
+    public void getDeadlineIso_checkStorageFormat_formatsCorrectly() {
         DeadlineTask task = new DeadlineTask("submit assignment", "2022-01-01 2359");
         String isoOutput = task.getDeadlineIso();
         assertEquals("2022-01-01 2359", isoOutput);

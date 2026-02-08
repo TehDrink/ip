@@ -5,15 +5,14 @@ package spark.tasks;
  * The Task class serves as a base class for specific task types like Task (Todo), Deadline, and Event.
  */
 public class Task {
-
-    private String description;
+    private static int counter = 1;
     protected String type;
+    private String description;
     private boolean isDone;
     private int taskId = 1;
-    private static int counter = 1;
 
     /**
-     * Constructor for Task class.
+     * Constructs the Task class. (Constructor)
      *
      * @param description The description of the task.
      */
@@ -68,18 +67,16 @@ public class Task {
     }
 
     /**
-     * Level 3
-     * Mark as Done
      * Marks the task as done.
+     * Level 3
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Level 3
-     * Mark as not Done
      * Marks the task as not done.
+     * Level 3
      */
     public void markAsNew() {
         this.isDone = false;
