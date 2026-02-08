@@ -1,6 +1,6 @@
 # Spark project template
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Spark_. Given below are instructions on how to use it.
+This is a project template for a greenfield Java project. It's named after [_Spark_ Lingonberry](https://www.tiktok.com/@spark.lingonberry/). Given below are instructions on how to use it.
 
 ## Setting up in Intellij
 
