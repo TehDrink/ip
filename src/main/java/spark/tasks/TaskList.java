@@ -33,7 +33,10 @@ public class TaskList {
      * @throws IOException If there is an error saving the updated task list.
      */
     public void addTask(Task task) throws IOException {
+        int initialSize = taskList.size();
+
         this.taskList.add(task);
+        assert this.taskList.size() == initialSize + 1 : "Task list size should increase by 1 after adding a task.";
         this.storage.saveTasks(this.taskList);
     }
 
@@ -44,7 +47,10 @@ public class TaskList {
      * @throws IOException If there is an error saving the updated task list.
      */
     public void removeTask(int index) throws IOException {
+        int initialSize = taskList.size();
+
         taskList.remove(index);
+        assert this.taskList.size() == initialSize - 1 : "Task list size should decrease by 1 after adding a task.";
         this.storage.saveTasks(this.taskList);
     }
 
