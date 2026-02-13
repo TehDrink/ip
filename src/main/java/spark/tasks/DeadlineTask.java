@@ -1,7 +1,6 @@
 package spark.tasks;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Level 4
@@ -21,14 +20,13 @@ public class DeadlineTask extends Task {
     public DeadlineTask(String description, String endDate) {
         super(description);
         this.type = "D";
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        this.endDate = LocalDateTime.parse(endDate, inputFormatter);
+        this.endDate = LocalDateTime.parse(endDate, Task.INPUT_FORMAT);
     }
 
 
     @Override
     public String getTaskInfo() {
-        String formattedDate = this.endDate.format(DateTimeFormatter.ofPattern("MMM d yyyy, h:mma"));
+        String formattedDate = this.endDate.format(Task.OUTPUT_FORMAT);
         return super.getTaskInfo() + " (by: " + formattedDate + ")";
     }
 
@@ -38,6 +36,6 @@ public class DeadlineTask extends Task {
      * @return The end date as a string in "yyyy-MM-dd HHmm" format.
      */
     public String getDeadlineIso() {
-        return this.endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return this.endDate.format(Task.INPUT_FORMAT);
     }
 }

@@ -41,7 +41,6 @@ public class MainWindow extends AnchorPane {
     /** Injects the Duke instance */
     public void setSpark(Spark s) {
         spark = s;
-        spark.getGreeting();
         dialogContainer.getChildren().add(
                 DialogBox.getSparkDialog(spark.getGreeting(), sparkImage)
         );
@@ -55,9 +54,11 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() throws InterruptedException {
         String userInput = userInputField.getText();
         String sparkOutput = spark.run(userInput);
-        if (sparkOutput == "") {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(userInput, userImage),
+        dialogContainer.getChildren().add(
+                DialogBox.getUserDialog(userInput, userImage)
+        );
+        if (sparkOutput.isEmpty()) {
+            dialogContainer.getChildren().add(
                     DialogBox.getSparkDialog(spark.getGoodbye(), sparkImage)
             );
 
@@ -65,8 +66,7 @@ public class MainWindow extends AnchorPane {
             delay.setOnFinished(event -> System.exit(0));
             delay.play();
         } else {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(userInput, userImage),
+            dialogContainer.getChildren().add(
                     DialogBox.getSparkDialog(sparkOutput, sparkImage)
             );
             userInputField.clear();
