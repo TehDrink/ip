@@ -11,11 +11,6 @@ import java.time.LocalDateTime;
 public class EventTask extends Task {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    // Start Date
-    // Start Date Time
-    // End Date
-    // End Date Time
-
     /**
      * Constructor for EventTask class.
      *
@@ -48,6 +43,14 @@ public class EventTask extends Task {
         return this.endDate.format(Task.INPUT_FORMAT);
     }
 
+    public void setStartDateIso(String startDate) {
+        this.startDate = LocalDateTime.parse(startDate, Task.INPUT_FORMAT);
+    }
+
+    public void setEndDateIso(String endDate) {
+        this.endDate = LocalDateTime.parse(endDate, Task.INPUT_FORMAT);
+    }
+
     @Override
     public String getTaskInfo() {
         return super.getTaskInfo()
@@ -55,4 +58,5 @@ public class EventTask extends Task {
                 + " to: " + endDate.format(Task.OUTPUT_FORMAT)
                 + ")";
     }
+
 }

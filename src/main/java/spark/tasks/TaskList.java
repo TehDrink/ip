@@ -41,6 +41,15 @@ public class TaskList {
     }
 
     /**
+     * Saves the current local taskList to storage.
+     *
+     * @throws IOException If there is an error saving the task list.
+     */
+    public void saveTasks() throws IOException {
+        this.storage.saveTasks(this.taskList);
+    }
+
+    /**
      * Deletes a task from the task list at the specified index and saves the updated list to storage.
      *
      * @param index The index of the task to be deleted.
@@ -56,6 +65,7 @@ public class TaskList {
 
     /**
      * Finds the tasks that contain the keyword
+     *
      * @param keyword keyword to search for
      * @return list of tasks that contain the keyword
      */
