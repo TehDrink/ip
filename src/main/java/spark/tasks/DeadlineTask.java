@@ -23,6 +23,14 @@ public class DeadlineTask extends Task {
         this.endDate = LocalDateTime.parse(endDate, Task.INPUT_FORMAT);
     }
 
+    /**
+     * Sets the end date of the deadline task using an ISO formatted string.
+     *
+     * @param endDate The new end date in "yyyy-MM-dd HHmm" format.
+     */
+    public void setEndDateIso(String endDate) {
+        this.endDate = LocalDateTime.parse(endDate, Task.INPUT_FORMAT);
+    }
 
     @Override
     public String getTaskInfo() {

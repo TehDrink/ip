@@ -50,7 +50,6 @@ public class Parser {
         } else if (input.equals("list")) {
             return handleList(taskList);
         } else if (Pattern.matches("^mark [0-9]+$", input)) { // Regex to check specifically for input
-            // Extract number - using regex
             return handleMark(taskList);
         } else if (Pattern.matches("^unmark [0-9]+$", input)) { // Regex to check specifically for input
             return handleUnmark(taskList);
@@ -64,6 +63,9 @@ public class Parser {
             return handleDelete(taskList);
         } else if (Pattern.matches("^find .+$", input)) { // Regex to check specifically for input
             return handleFind(taskList);
+        } else if (Pattern.matches("^edit [0-9]+ .+$", input)) { // Regex to check specifically for input
+            // Edit index, choose what to change.
+            return handleEdit(taskList);
         } else { // Handle Invalid
             return handleInvalidCommand();
         }
@@ -180,7 +182,7 @@ public class Parser {
 
         // ToDo Task
         // Extract Task
-        String taskDescription = input.substring(input.indexOf("todo ") + 5);
+        String taskDescription = input.substring(input.indexOf("todo ") + 5).trim();
         assert !taskDescription.isEmpty() : "Task description cannot be empty after regex match";
         // Add to list
         Task item = new Task(taskDescription);
@@ -297,8 +299,70 @@ public class Parser {
             throw new SparkException("Bark? deadline (fill) /by (fill)?");
         } else if (input.contains("event")) {
             throw new SparkException("Bark? event (fill) /from (fill) /to (fill)?");
+        } else if (input.contains("edit")) {
+            throw new SparkException("Bark?"
+                    + "\nedit (fill index) /desc (fill)"
+                    + "\nedit (fill index) /by (fill)"
+                    + "\nedit (fill index) /from (fill)"
+                    + "\nedit (fill index) /to (fill)?");
         }
         throw new SparkException("Bark? I didn't quite get that! Fetch me a proper command!");
+    }
+
+    private String handleEdit(TaskList taskList) throws SparkException, IOException {
+        String[] split = input.split(" ", 3);
+        if (split.length < 3) {
+            throw new SparkException("Bark! Invalid format. Use: edit <id> /desc <text>");
+        }
+
+        int target = Integer.parseInt(split[1]) - 1;
+        if (target >= taskList.getSize() || target < 0) {
+            throw new SparkException("Grrr, item does not exist! Try another Id Bark!");
+        }
+
+        Task task = taskList.getTask(target);
+        String editCommand = split[2].trim();
+
+        try {
+            if (editCommand.startsWith("/desc ")) {
+                String newDesc = editCommand.substring(6).trim();
+                assert !newDesc.isEmpty() : "Description cannot be empty";
+                task.setDescription(newDesc);
+
+            } else if (editCommand.startsWith("/by ")) {
+                if (!(task instanceof DeadlineTask deadlineTask)) {
+                    throw new SparkException("Bark!\nThis is not a Deadline task! Cannot edit /by");
+                }
+                String newBy = editCommand.substring(4).trim();
+                deadlineTask.setEndDateIso(newBy);
+
+            } else if (editCommand.startsWith("/from ")) {
+                if (!(task instanceof EventTask eventTask)) {
+                    throw new SparkException("Bark!\nThis is not an Event task! Cannot edit /from");
+                }
+                String newFrom = editCommand.substring(6).trim();
+                eventTask.setStartDateIso(newFrom);
+
+            } else if (editCommand.startsWith("/to ")) {
+                if (!(task instanceof EventTask eventTask)) {
+                    throw new SparkException("Bark!\nThis is not an Event task! Cannot edit /to");
+                }
+                String newTo = editCommand.substring(4).trim();
+                eventTask.setEndDateIso(newTo);
+
+            } else {
+                throw new SparkException("Bark?"
+                        + "\nedit (fill index) /desc (fill)"
+                        + "\nedit (fill index) /by (fill)"
+                        + "\nedit (fill index) /from (fill)"
+                        + "\nedit (fill index) /to (fill)?");
+            }
+        } catch (java.time.format.DateTimeParseException e) {
+            throw new SparkException("Bark!\nInvalid date format. Use: yyyy-MM-dd HHmm");
+        }
+
+        taskList.saveTasks(); // Save changes to hard drive
+        return "Bark! Task updated successfully!\n" + task.getTaskInfo();
     }
 }
 

@@ -47,12 +47,13 @@ public class Task {
     }
 
     /**
-     * Gets the id of the task.
+     * Sets the description of the task.
      *
-     * @return The task id as an integer.
+     * @param newDescription The new description to set for the task.
      */
-    public int getTaskId() {
-        return this.taskId;
+    public void setDescription(String newDescription) {
+        assert newDescription != null : "New description should never be null";
+        this.description = newDescription;
     }
 
     /**
