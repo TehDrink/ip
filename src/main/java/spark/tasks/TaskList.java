@@ -60,7 +60,7 @@ public class TaskList {
      * @return list of tasks that contain the keyword
      */
     public ArrayList<Task> findTasks(String keyword) {
-        ArrayList<Task> foundTasks = new ArrayList<Task>();
+        ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : taskList) {
             if (task.getDescription().contains(keyword)) {
                 foundTasks.add(task);

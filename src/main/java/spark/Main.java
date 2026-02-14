@@ -39,8 +39,7 @@ public class Main extends Application {
         } catch (FileNotFoundException e) {
             System.err.println("Bark! Error! Data file not found at " + DATA_PATH);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Bark! A fatal error occurred loading the UI: " + e.getMessage());
         }
-
     }
 }

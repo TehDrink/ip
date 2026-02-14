@@ -1,6 +1,6 @@
 package spark;
 
-import java.io.FileNotFoundException; // Necessary for error handling
+import java.io.FileNotFoundException;
 
 import spark.storage.Storage;
 import spark.tasks.TaskList;
@@ -9,8 +9,6 @@ import spark.ui.Ui;
 /**
  * Initializes the necessary components and starts the user interface.
  * The main class for the Spark application.
- * A-MoreOOP
- * Made project more OOP!
  */
 public class Spark {
     private final Ui ui;

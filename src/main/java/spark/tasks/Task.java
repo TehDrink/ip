@@ -1,15 +1,19 @@
 package spark.tasks;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a generic task with a description and completion status.
  * The Task class serves as a base class for specific task types like Task (Todo), Deadline, and Event.
  */
 public class Task {
+    public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    public static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy, h:mma");
     private static int counter = 1;
     protected String type;
     private String description;
     private boolean isDone;
-    private int taskId = 1;
+    private int taskId;
 
     /**
      * Constructs the Task class. (Constructor)

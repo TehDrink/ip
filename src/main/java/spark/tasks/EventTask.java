@@ -1,7 +1,6 @@
 package spark.tasks;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Level 4
@@ -26,9 +25,8 @@ public class EventTask extends Task {
      */
     public EventTask(String description, String startDate, String endDate) {
         super(description);
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        this.startDate = LocalDateTime.parse(startDate, inputFormatter);
-        this.endDate = LocalDateTime.parse(endDate, inputFormatter);
+        this.startDate = LocalDateTime.parse(startDate, Task.INPUT_FORMAT);
+        this.endDate = LocalDateTime.parse(endDate, Task.INPUT_FORMAT);
         this.type = "E";
     }
 
@@ -38,7 +36,7 @@ public class EventTask extends Task {
      * @return The start date as a string in "yyyy-MM-dd HHmm" format
      */
     public String getStartDateIso() {
-        return this.startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return this.startDate.format(Task.INPUT_FORMAT);
     }
 
     /**
@@ -47,12 +45,14 @@ public class EventTask extends Task {
      * @return The end date as a string in "yyyy-MM-dd HHmm" format
      */
     public String getEndDateIso() {
-        return this.endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return this.endDate.format(Task.INPUT_FORMAT);
     }
 
     @Override
     public String getTaskInfo() {
-        DateTimeFormatter printer = DateTimeFormatter.ofPattern("MMM d yyyy, h:mma");
-        return super.getTaskInfo() + " (from: " + startDate.format(printer) + " to: " + endDate.format(printer) + ")";
+        return super.getTaskInfo()
+                + " (from: " + startDate.format(Task.OUTPUT_FORMAT)
+                + " to: " + endDate.format(Task.OUTPUT_FORMAT)
+                + ")";
     }
 }
