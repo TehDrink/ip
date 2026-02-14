@@ -85,6 +85,8 @@ public class Parser {
             // Deadline Task
             // Extract Task
             String taskDescription = input.substring(input.indexOf("deadline ") + 9, input.indexOf(" /by"));
+            assert !taskDescription.isEmpty() : "Task description cannot be empty after regex match";
+
             // Extract Date
             String deadline = input.substring(input.indexOf("/by ") + 4);
             // Add to list
@@ -107,6 +109,7 @@ public class Parser {
             // Extract Task
             String taskDescription = input.substring(input.indexOf("todo ") + 5);
 
+            assert !taskDescription.isEmpty() : "Task description cannot be empty after regex match";
             // Add to list
             Task item = new Task(taskDescription);
             taskList.addTask(item);
@@ -121,6 +124,8 @@ public class Parser {
             // Event Task
             // Extract Task
             String taskDescription = input.substring(input.indexOf("event ") + 6, input.indexOf(" /from"));
+
+            assert !taskDescription.isEmpty() : "Task description cannot be empty after regex match";
             // Extract StartDate
             String startDate = input.substring(input.indexOf("/from ") + 6, input.indexOf(" /to"));
             // Extract StartTime
