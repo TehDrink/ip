@@ -109,6 +109,7 @@ public class Storage {
                 task = new EventTask(description, from, to);
                 break;
             default:
+                assert false : "Unknown task type read from storage:" + type;
                 continue; // Skip unknown formats
             }
 
