@@ -82,6 +82,11 @@ public class Parser {
     private String handleList(TaskList taskList) {
         StringBuilder text = new StringBuilder();
 
+        if (taskList.getSize() == 0) {
+            text.append("No tasks found! Add a task first! Bark!");
+            return text.toString();
+        }
+
         for (int i = 0; i < taskList.getSize(); i++) {
             text.append(i + 1).append(". ").append(taskList.getTask(i).getTaskInfo());
             if (i + 1 != taskList.getSize()) {
