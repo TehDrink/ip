@@ -312,6 +312,8 @@ public class Parser {
                     + "\nedit (fill index) /by (fill)"
                     + "\nedit (fill index) /from (fill)"
                     + "\nedit (fill index) /to (fill)?");
+        } else if (input.contains("find")) {
+            throw new SparkException("Bark? find (fill keyword)?");
         }
         throw new SparkException("Bark? I didn't quite get that! Fetch me a proper command!");
     }
