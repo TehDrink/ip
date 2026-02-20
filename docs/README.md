@@ -2,6 +2,8 @@
 
 > "Bark Bark Bark Bark, Bark." — *Spark, probably.*
 
+![App Screenshot](Ui.png)
+
 Spark is a CLI-based task manager designed to help you **fetch** your goals and **sit** on your deadlines. Whether it's daily chores or long-term projects, Spark keeps your tasks on a short leash.
 
 ### What this good boy can do:
