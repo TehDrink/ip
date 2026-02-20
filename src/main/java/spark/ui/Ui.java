@@ -76,7 +76,7 @@ public class Ui {
         // System.out.println("----------------");
         return "Bark! Hello I am Spark! I am dog!\nWhat can I fetch for you today, Bark?"
                 + "\n'todo': Add todo task\n'event':Add event task\n'deadline': Add deadline task"
-                + "\n'list': List all tasks\n'edit': Edit a task\n'bye': Exit the program";
+                + "\n'find': find a task!\n'list': List all tasks\n'edit': Edit a task\n'bye': Exit the program";
     }
 
     /**
