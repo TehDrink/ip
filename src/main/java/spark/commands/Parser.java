@@ -57,9 +57,9 @@ public class Parser {
             // It now prevents spaces to be entered as valid fields i.e. todo (blank spaces)
         } else if (Pattern.matches("^todo\\s+.*\\S.*$", input)) {
             return handleTodo(taskList);
-        } else if (Pattern.matches("^deadline\\s+.*\\S.*\\s+/by\\s+.*\\S.*$", input)) { // Checks for specific
+        } else if (Pattern.matches("^deadline\\s+.*\\S.*\\s+/by\\s+.*\\S.*$", input)) {
             return handleDeadline(taskList);
-        } else if (Pattern.matches("^event\\s+.*?\\S.*?\\s+/from\\s+.*?\\S.*?\\s+/to\\s+.*?\\S.*?$", input)) { // Checks for specific
+        } else if (Pattern.matches("^event\\s+.*?\\S.*?\\s+/from\\s+.*?\\S.*?\\s+/to\\s+.*?\\S.*?$", input)) {
             return handleEvent(taskList);
         } else if (Pattern.matches("^delete [0-9]+$", input)) { // Regex to check specifically for input
             return handleDelete(taskList);
