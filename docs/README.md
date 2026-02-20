@@ -33,9 +33,11 @@ Note: If you are running Spark from source, run it in your terminal by running t
   * **Syntax:** `event <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>`
   * **Example:** `event Nintendo Museum /from 2025-12-07 1530 /to 2025-12-07 1600`
 
-#### Viewing 🔍
+#### Viewing and Finding🔍
 * **List**: Tells Spark to fetch and display all the tasks currently in your list.
   * **Syntax:** `list`
+* **Find**: Tells Spark to fetch the specific tasks that match the keyword you provide by description.
+  * **Syntax:** `find <keyword>`
 
 #### Managing States ✅
 * **Mark**: Mark a task as completed.
