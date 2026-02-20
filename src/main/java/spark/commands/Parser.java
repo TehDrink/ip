@@ -53,17 +53,19 @@ public class Parser {
             return handleMark(taskList);
         } else if (Pattern.matches("^unmark [0-9]+$", input)) { // Regex to check specifically for input
             return handleUnmark(taskList);
-        } else if (Pattern.matches("^todo .+$", input)) {
+            // todo, deadline, event, find and edit have better regex now thanks to Google Gemini
+            // It now prevents spaces to be entered as valid fields i.e. todo (blank spaces)
+        } else if (Pattern.matches("^todo\\s+.*\\S.*$", input)) {
             return handleTodo(taskList);
-        } else if (Pattern.matches("^deadline .+ /by .+$", input)) { // Checks for specific
+        } else if (Pattern.matches("^deadline\\s+.*\\S.*\\s+/by\\s+.*\\S.*$", input)) { // Checks for specific
             return handleDeadline(taskList);
-        } else if (Pattern.matches("^event .+ /from .+ /to .+$", input)) { // Checks for specific
+        } else if (Pattern.matches("^event\\s+.*?\\S.*?\\s+/from\\s+.*?\\S.*?\\s+/to\\s+.*?\\S.*?$", input)) { // Checks for specific
             return handleEvent(taskList);
         } else if (Pattern.matches("^delete [0-9]+$", input)) { // Regex to check specifically for input
             return handleDelete(taskList);
-        } else if (Pattern.matches("^find .+$", input)) { // Regex to check specifically for input
+        } else if (Pattern.matches("^find\\s+.*?\\S.*?$", input)) { // Regex to check specifically for input
             return handleFind(taskList);
-        } else if (Pattern.matches("^edit [0-9]+ .+$", input)) { // Regex to check specifically for input
+        } else if (Pattern.matches("^edit\\s+[0-9]+\\s+.*?\\S.*?$", input)) { // Regex to check specifically for input
             // Edit index, choose what to change.
             return handleEdit(taskList);
         } else { // Handle Invalid
@@ -148,7 +150,7 @@ public class Parser {
 
         // Deadline Task
         // Extract Task
-        String taskDescription = input.substring(input.indexOf("deadline ") + 9, input.indexOf(" /by"));
+        String taskDescription = input.substring(input.indexOf("deadline ") + 9, input.indexOf(" /by")).trim();
         assert !taskDescription.isEmpty() : "Task description cannot be empty after regex match";
 
         // Extract Date
@@ -208,7 +210,7 @@ public class Parser {
 
         // Event Task
         // Extract Task
-        String taskDescription = input.substring(input.indexOf("event ") + 6, input.indexOf(" /from"));
+        String taskDescription = input.substring(input.indexOf("event ") + 6, input.indexOf(" /from")).trim();
         assert !taskDescription.isEmpty() : "Task description cannot be empty after regex match";
 
         // Extract StartDate
